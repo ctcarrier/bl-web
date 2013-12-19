@@ -1,3 +1,5 @@
+import play.Project._
+
 name := """bl-web"""
 
 version := "1.0-SNAPSHOT"
@@ -18,4 +20,6 @@ libraryDependencies ++= Seq(
   // "group" % "artifact" % "version"
 )
 
-play.Project.playScalaSettings
+playScalaSettings
+
+atmosPlaySettings
