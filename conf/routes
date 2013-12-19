@@ -6,5 +6,4 @@
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /webjars/*file              controllers.WebJarAssets.at(file)
 
-GET     /api/hello/:name            controllers.ImageApi.hello(name: String)
-GET     /api/images/:key            controllers.ImageApi.getImageInfo(key: String)
+GET     /images/:key            controllers.ImageApi.getImageInfo(key: String)
