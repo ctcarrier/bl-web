@@ -28,6 +28,8 @@ var imageController = angular.module('imageController', []);
 imageController.controller('ImageController', ['$scope', '$resource', 'ImageMeta', 'Tag',
   function ($scope, $http, ImageMeta, Tag) {
     $scope.imageMeta = ImageMeta.get({_id: 'random'});
-    $scope.tag = Tag.get({_id: 'random'});
+    $scope.tag = Tag.get({_id: 'random'}, function(){
+        $scope.tag.answerText = $scope.tag.predicate.displayPattern.format($scope.tag.name);
+    });
   }]);
   });
