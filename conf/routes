@@ -9,7 +9,7 @@ GET     /webjars/*file              controllers.WebJarAssets.at(file)
 
 GET     /api/images/:key            controllers.ImageApi.getImageInfo(key: String)
 
-#GET     /api/tags/:key            controllers.ImageApi.getTag(key: String)
+GET     /api/tags/:key            controllers.ImageApi.getTag(key: String)
 
 GET     /                           controllers.Assets.at(path="/public", file="index.html")
 

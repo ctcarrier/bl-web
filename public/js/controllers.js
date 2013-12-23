@@ -25,12 +25,9 @@ console.log("Creating controllers");
 define(['angular'], function(angular){
 var imageController = angular.module('imageController', []);
 
-imageController.controller('ImageController', ['$scope', '$http',
-  function ($scope, $http) {
-//    $http.get('phones/phones.json').success(function(data) {
-//      $scope.phones = data;
-//    });
-//
-//    $scope.orderProp = 'age';
+imageController.controller('ImageController', ['$scope', '$resource', 'ImageMeta', 'Tag',
+  function ($scope, $http, ImageMeta, Tag) {
+    $scope.imageMeta = ImageMeta.get({_id: 'random'});
+    $scope.tag = Tag.get({_id: 'random'});
   }]);
   });

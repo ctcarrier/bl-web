@@ -17,7 +17,7 @@
 //
 //  });
 
-define(['angular', 'angular-resource'], function(angular){
+define(['angular', 'ngResource'], function(angular){
 
 
 var imageService = angular.module('imageService', ['ngResource']);
@@ -27,7 +27,7 @@ imageService.factory('Tag', ['$resource',
     return $resource('/api/tags/:_id', {'_id': '@_id'});
   }]);
 
-imageService.factory('Tag', ['$resource',
+imageService.factory('ImageMeta', ['$resource',
     function($resource){
       return $resource('/api/images/:_id', {'_id': '@_id'});
     }]);
