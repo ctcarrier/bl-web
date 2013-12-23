@@ -15,7 +15,9 @@ libraryDependencies ++= Seq(
   javaCore,  // The core Java API
   // WebJars pull in client-side web libraries
   "org.webjars" %% "webjars-play" % "2.2.0",
-  "org.webjars" % "bootstrap" % "3.0.3"
+  "org.webjars" % "bootstrap" % "3.0.3",
+  "org.webjars" % "angularjs" % "1.2.5",
+  "org.webjars" % "requirejs" % "2.1.8"
   // Add your own project dependencies in the form:
   // "group" % "artifact" % "version"
 )

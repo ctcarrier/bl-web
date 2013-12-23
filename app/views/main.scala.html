@@ -12,12 +12,18 @@
 <body>
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <div class="container-fluid">
-                <a id="titleLink" class="brand" href="/">@title</a>
+            <div class="container-fluid col-xs-2">
+                <a id="nobutton" class="brand" href="/">No</a>
+            </div>
+            <div class="container-fluid col-xs-6">
+                <a id="question" class="brand" href="/">Some quesiton that has a little bit of text</a>
+            </div>
+            <div class="container-fluid col-xs-2">
+                <a id="yesbutton" class="brand" href="/">Yes</a>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container full_width">
         @content
     </div>
 </body>

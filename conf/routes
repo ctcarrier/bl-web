@@ -3,7 +3,14 @@
 # ~~~~
 
 # Map static resources from the /public folder to the /assets URL path
+GET     /lib/require.js             controllers.WebJarAssets.requirejs
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /webjars/*file              controllers.WebJarAssets.at(file)
 
-GET     /images/:key            controllers.ImageApi.getImageInfo(key: String)
+GET     /api/images/:key            controllers.ImageApi.getImageInfo(key: String)
+
+#GET     /api/tags/:key            controllers.ImageApi.getTag(key: String)
+
+GET     /                           controllers.Assets.at(path="/public", file="index.html")
+
+#GET     /*name                   controllers.RedirectAll.toLanding(name: String)

@@ -1,18 +1,12 @@
-@(imageMeta: ImageMeta, tag: Tag)
-
-@mainNoNav("Images from the British Library") {
-
-<script type='text/javascript' src='@routes.Assets.at("javascripts/index.min.js")'></script>
-
-        <div id="wrap" class="full_width">
-<div class="container">
-    <div class="dark_background row">
-        <div class="col-xs-12 text-center">
-            <img class="img-responsive img-center" src="@imageMeta.flickr.flickr_original_source" />
+<div id="wrap" class="full_width">
+    <div class="container">
+        <div class="dark_background row">
+            <div class="col-xs-12 text-center">
+                <img class="img-responsive img-center" src="@imageMeta.flickr.flickr_original_source" />
+            </div>
         </div>
     </div>
 </div>
-        </div>
 <div id = "footer" class="full_width">
     <div class="container">
         <div class = "row">
@@ -28,5 +22,3 @@
         </div>
     </div>
 </div>
-
-}

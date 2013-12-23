@@ -19,15 +19,29 @@ object ImageApi extends Controller {
 
   val config = ConfigFactory.load()
   final val BASE_URL = config.getString("blrest.base_url")
+  final val RANDOM_TAG_URL = config.getString("blrest.random_tag_url")
 
   def hello(name: String) = Action {
     Ok(Json.toJson((Greeting(name, "Hello "))))
   }
 
+  /*def getImageInfo(key: String) = Action.async {
+    for {
+      metaResp <- WS.url("%s/%s".format(BASE_URL, key)).get()
+      tagResp <- WS.url(RANDOM_TAG_URL).get()
+
+    } yield Ok(randomimage.render(Json.fromJson[ImageMeta](metaResp.json).get, Json.fromJson[Tag](tagResp.json).get))
+  }*/
+
   def getImageInfo(key: String) = Action.async {
-    WS.url("%s/%s".format(BASE_URL, key)).get().map { response =>
-      val imageMeta = Json.fromJson[ImageMeta](response.json).get
-      Ok(randomimage.render(imageMeta))
-    }
+    for {
+      metaResp <- WS.url("%s/%s".format(BASE_URL, key)).get()
+    } yield Ok(metaResp.json)
+  }
+
+  def getTag(key: String) = Action.async {
+    for {
+      tagResp <- WS.url(RANDOM_TAG_URL).get()
+    } yield Ok(tagResp.json)
   }
 }
