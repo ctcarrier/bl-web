@@ -1,1 +1,1 @@
-web: target/start --http.port=$PORT $PLAY_OPTS -Dconfig.file=conf/prod.conf
+web: target/universal/stage/bin/bl-web -Dhttp.port=$PORT -Dconfig.file=conf/prod.conf
