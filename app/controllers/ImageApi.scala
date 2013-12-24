@@ -40,8 +40,13 @@ object ImageApi extends Controller {
   }
 
   def getTag(key: String) = Action.async {
-    for {
-      tagResp <- WS.url(RANDOM_TAG_URL).get()
-    } yield Ok(tagResp.json)
+
+
+
+      WS.url(RANDOM_TAG_URL).get().map({ tagResp =>
+        val tag = Json.fromJson[Tag](tagResp.json).get
+        val tagWithQuestion = tag.copy(questionText = Some(tag.displayPattern.format(tag.name)))
+        Ok(Json.toJson(tagWithQuestion))
+      });
   }
 }

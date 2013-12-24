@@ -22,6 +22,12 @@ libraryDependencies ++= Seq(
   // "group" % "artifact" % "version"
 )
 
+resolvers ++= Seq(
+	"JBoss repository" at "https://repository.jboss.org/nexus/content/repositories/",
+        "Scala-Tools Maven2 Snapshots Repository" at "http://scala-tools.org/repo-snapshots",
+	"Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases/"
+)
+
 playScalaSettings
 
 atmosPlaySettings

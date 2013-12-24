@@ -29,7 +29,9 @@ imageController.controller('ImageController', ['$scope', '$resource', 'ImageMeta
   function ($scope, $http, ImageMeta, Tag) {
     $scope.imageMeta = ImageMeta.get({_id: 'random'});
     $scope.tag = Tag.get({_id: 'random'}, function(){
-        $scope.tag.answerText = $scope.tag.predicate.displayPattern.format($scope.tag.name);
+        console.log("Formatting: " + $scope.tag.displayPattern + " " + $scope.tag.name);
+        $scope.tag.answerText = $scope.tag.displayPattern.format($scope.tag.name);
+        console.log("answerText: " + $scope.tag.answerText);
     });
   }]);
   });
