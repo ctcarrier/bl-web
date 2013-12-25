@@ -31,4 +31,9 @@ imageService.factory('ImageMeta', ['$resource',
     function($resource){
       return $resource('/api/images/:_id', {'_id': '@_id'});
     }]);
+
+    imageService.factory('TagResponse', ['$resource',
+        function($resource){
+          return $resource('/api/tagResponses/:_id', {'_id': '@_id'});
+        }]);
     });

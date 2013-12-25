@@ -20,6 +20,7 @@ object ImageApi extends Controller {
   val config = ConfigFactory.load()
   final val BASE_URL = config.getString("blrest.base_url")
   final val RANDOM_TAG_URL = config.getString("blrest.random_tag_url")
+  final val TAG_RESPONSE_URL = config.getString("blrest.tag_response_url")
 
   def hello(name: String) = Action {
     Ok(Json.toJson((Greeting(name, "Hello "))))
@@ -47,6 +48,14 @@ object ImageApi extends Controller {
         val tag = Json.fromJson[Tag](tagResp.json).get
         val tagWithQuestion = tag.copy(questionText = Some(tag.displayPattern.format(tag.name)))
         Ok(Json.toJson(tagWithQuestion))
-      });
+      })
+  }
+
+  def saveTagResponse = Action.async { request =>
+    val tagResponse = Json.fromJson[TagResponse](request.body.asJson.get).get
+
+    WS.url(TAG_RESPONSE_URL).post(Json.toJson(tagResponse)).map({ tagResponseResp =>
+      Created(tagResponseResp.json)
+    })
   }
 }

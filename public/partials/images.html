@@ -2,23 +2,47 @@
     <div class="container">
         <div class="dark_background row">
             <div class="col-xs-12 text-center">
-                <img class="img-responsive img-center" src="{{imageMeta.flickr.flickr_original_source}}" />
+                <!--<button type="button" class="btn flush_right" ng-click="rotateRight()">
+                    <img src="/assets/images/object-rotate-left.png" />
+                </button>
+                <button type="button" class="btn flush_left" ng-click="rotateLeft()">
+                    <img src="/assets/images/object-rotate-right-3.png" />
+                </button>-->
+                <button id="modalButton" type="button" class="btn flush_right transparent" ng-click="goModal()">
+                    <img src="/assets/images/dialog-information-3.png" />
+                </button>
+                <img id="mainImage" class="img-responsive img-center" src="{{imageMeta.flickr.flickr_original_source}}" />
             </div>
         </div>
     </div>
 </div>
-<div id = "footer" class="full_width">
+<div id = "footer" class="full_width align-vert">
     <div class="container">
         <div class = "row">
-            <div class="col-xs-2">
-                <button type="button" class="btn btn-danger">N</button>
+            <div class="col-xs-2 text-right">
+                <button class="transparent" type="button" class="btn" ng-click="sendNegative()">
+                    <img src="/assets/images/dialog-no-2.png" />
+                </button>
             </div>
-            <div class="col-xs-8">
-                <a id="question" class="brand" href="/">{{tag.questionText}}?</a>
+            <div class="col-xs-8 text-center">
+                {{tag.questionText}}?
             </div>
             <div class="col-xs-2">
-                <button type="button" class="btn btn-success">Y</button>
+                <button class="transparent" type="button" class="btn" ng-click="sendPositive()">
+                    <img src="/assets/images/dialog-apply.png" />
+                </button>
             </div>
         </div>
     </div>
+</div>
+<div id="modal" class="modal">
+    <ul>
+
+        <li><a href="{{imageMeta.flickr.flickr_url}}">Flickr Source</a></li>
+        <li>Title: {{imageMeta.title}}</li>
+        <li>First Author: {{imageMeta.first_author}}</li>
+        <li>Date: {{imageMeta.date}}</li>
+        <li>Published in: {{imageMeta.pubplace}}</li>
+        <li>Publisher: {{imageMeta.publisher}}</li>
+    </ul>
 </div>

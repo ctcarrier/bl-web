@@ -25,13 +25,55 @@ console.log("Creating controllers");
 define(['angular'], function(angular){
 var imageController = angular.module('imageController', []);
 
-imageController.controller('ImageController', ['$scope', '$resource', 'ImageMeta', 'Tag',
-  function ($scope, $http, ImageMeta, Tag) {
-    $scope.imageMeta = ImageMeta.get({_id: 'random'});
-    $scope.tag = Tag.get({_id: 'random'}, function(){
-        console.log("Formatting: " + $scope.tag.displayPattern + " " + $scope.tag.name);
-        $scope.tag.answerText = $scope.tag.displayPattern.format($scope.tag.name);
-        console.log("answerText: " + $scope.tag.answerText);
-    });
+imageController.controller('ImageController', ['$scope', '$resource', 'ImageMeta', 'Tag', 'TagResponse',
+  function ($scope, $http, ImageMeta, Tag, TagResponse) {
+
+    $scope.init = function() {
+        $scope.imageMeta = ImageMeta.get({_id: 'random'});
+        $scope.tag = Tag.get({_id: 'random'});
+
+         $scope.nextImageMeta = ImageMeta.get({_id: 'random'}, function(){
+             $.preload([$scope.nextImageMeta.flickr.flickr_original_source]);
+         });
+         $scope.nextTag = Tag.get({_id: 'random'});
+    };
+
+    $scope.refreshImageContext = function(){
+        //$scope.imageMeta = $scope.nextImageMeta;
+        //$scope.tag = $scope.nextTag;
+
+        $scope.imageMeta = ImageMeta.get({_id: 'random'});
+         $scope.tag = Tag.get({_id: 'random'});
+    };
+
+
+
+    $scope.sendNegative = function() {
+        var tagResponse = new TagResponse({tag: $scope.tag, response: false});
+        tagResponse.$save();
+        $scope.refreshImageContext();
+    };
+    $scope.sendPositive = function() {
+        var tagResponse = new TagResponse({tag: $scope.tag, response: true});
+        tagResponse.$save();
+        $scope.refreshImageContext();
+    };
+
+    $scope.rotateLeft = function() {
+        $("#mainImage").addClass("rotate270");
+    };
+    $scope.rotateRight = function() {
+        $("#mainImage").addClass("rotate90");
+    };
+
+    $scope.goModal = function() {
+        console.log("Going modal");
+        $("#modal").modal({
+            showClose: false
+        });
+        $.modal.resize()
+    };
+
+    $scope.refreshImageContext();
   }]);
   });

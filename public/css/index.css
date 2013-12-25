@@ -40,6 +40,92 @@ body, html {
     margin: 0 auto;
 }
 
+.flush_right {
+    min-height: 48px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.flush_left {
+    min-height: 48px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.rotate90 {
+    behavior:url(-ms-transform.htc);
+    /* Firefox */
+    -moz-transform:rotate(90deg);
+    /* Safari and Chrome */
+    -webkit-transform:rotate(90deg);
+    /* Opera */
+    -o-transform:rotate(90deg);
+    /* IE9 */
+    -ms-transform:rotate(90deg);
+    /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)"; /* 0=0, 1=90, 2=180, 3=270 */
+}
+
+.rotate180 {
+    behavior:url(-ms-transform.htc);
+    /* Firefox */
+    -moz-transform:rotate(180deg);
+    /* Safari and Chrome */
+    -webkit-transform:rotate(180deg);
+    /* Opera */
+    -o-transform:rotate(180deg);
+    /* IE9 */
+    -ms-transform:rotate(180deg);
+    /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)"; /* 0=0, 1=90, 2=180, 3=270 */
+}
+
+.rotate270 {
+    behavior:url(-ms-transform.htc);
+    /* Firefox */
+    -moz-transform:rotate(270deg);
+    /* Safari and Chrome */
+    -webkit-transform:rotate(270deg);
+    /* Opera */
+    -o-transform:rotate(270deg);
+    /* IE9 */
+    -ms-transform:rotate(270deg);
+    /* IE6,IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"; /* 0=0, 1=90, 2=180, 3=270 */
+}
+
+.align-vertical {
+    margin-top: auto;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.transparent {
+    background: transparent;
+    border: none !important;
+}
+
+.align-vert {
+    vertical-align:middle;
+    float:none;
+    display:inline-block;
+    vertical-align:middle;
+    margin-right:-4px;
+}
+
+#modal {
+    max-height: 50%;
+    overflow: auto;
+}
+
+#modalButton {
+
+}
+
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;

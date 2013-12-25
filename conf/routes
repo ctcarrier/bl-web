@@ -13,4 +13,6 @@ GET     /api/tags/:key            controllers.ImageApi.getTag(key: String)
 
 GET     /                           controllers.Assets.at(path="/public", file="index.html")
 
+POST    /api/tagResponses           controllers.ImageApi.saveTagResponse
+
 #GET     /*name                   controllers.RedirectAll.toLanding(name: String)
