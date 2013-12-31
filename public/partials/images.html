@@ -19,15 +19,15 @@
 <div id = "footer" class="full_width align-vert">
     <div class="container">
         <div class = "row">
-            <div class="col-xs-2 text-right">
+            <div class="col-xs-8 col-lg-offset-2 col-lg-4 text-right">
+                {{tag.questionText}}?
+            </div>
+            <div class="col-xs-1">
                 <button class="transparent" type="button" class="btn" ng-click="sendNegative()">
                     <img src="/assets/images/dialog-no-2.png" />
                 </button>
             </div>
-            <div class="col-xs-8 text-center">
-                {{tag.questionText}}?
-            </div>
-            <div class="col-xs-2">
+            <div class="col-xs-1">
                 <button class="transparent" type="button" class="btn" ng-click="sendPositive()">
                     <img src="/assets/images/dialog-apply.png" />
                 </button>

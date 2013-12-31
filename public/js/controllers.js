@@ -25,8 +25,8 @@ console.log("Creating controllers");
 define(['angular'], function(angular){
 var imageController = angular.module('imageController', []);
 
-imageController.controller('ImageController', ['$scope', '$resource', 'ImageMeta', 'Tag', 'TagResponse',
-  function ($scope, $http, ImageMeta, Tag, TagResponse) {
+imageController.controller('ImageController', ['$document', '$scope', '$resource', 'ImageMeta', 'Tag', 'TagResponse',
+  function ($document, $scope, $http, ImageMeta, Tag, TagResponse) {
 
     $scope.init = function() {
         $scope.imageMeta = ImageMeta.get({_id: 'random'});
@@ -46,14 +46,23 @@ imageController.controller('ImageController', ['$scope', '$resource', 'ImageMeta
          $scope.tag = Tag.get({_id: 'random'});
     };
 
-
+    $document.keypress(function(keyEvent) {
+        if (keyEvent.which === 121){
+            $scope.sendPositive();
+        }
+        else if (keyEvent.which === 110){
+            $scope.sendNegative();
+        }
+       });
 
     $scope.sendNegative = function() {
+        console.log("Negatory");
         var tagResponse = new TagResponse({tag: $scope.tag, imageMeta: $scope.imageMeta, response: false});
         tagResponse.$save();
         $scope.refreshImageContext();
     };
     $scope.sendPositive = function() {
+        console.log("Pos");
         var tagResponse = new TagResponse({tag: $scope.tag, imageMeta: $scope.imageMeta, response: true});
         tagResponse.$save();
         $scope.refreshImageContext();
