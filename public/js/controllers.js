@@ -49,12 +49,12 @@ imageController.controller('ImageController', ['$scope', '$resource', 'ImageMeta
 
 
     $scope.sendNegative = function() {
-        var tagResponse = new TagResponse({tag: $scope.tag, response: false});
+        var tagResponse = new TagResponse({tag: $scope.tag, imageMeta: $scope.imageMeta, response: false});
         tagResponse.$save();
         $scope.refreshImageContext();
     };
     $scope.sendPositive = function() {
-        var tagResponse = new TagResponse({tag: $scope.tag, response: true});
+        var tagResponse = new TagResponse({tag: $scope.tag, imageMeta: $scope.imageMeta, response: true});
         tagResponse.$save();
         $scope.refreshImageContext();
     };

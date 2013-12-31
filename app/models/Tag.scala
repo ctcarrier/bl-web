@@ -11,4 +11,4 @@ case object Predicate {
 }
 case class Tag(name: String, displayPattern: String, predicate: Predicate, questionText: Option[String] = None)
 
-case class TagResponse(tag: Tag, response: Boolean)
+case class TagResponse(tag: Tag, imageMeta: ImageMeta, response: Boolean)
