@@ -56,13 +56,11 @@ imageController.controller('ImageController', ['$document', '$scope', '$resource
        });
 
     $scope.sendNegative = function() {
-        console.log("Negatory");
         var tagResponse = new TagResponse({tag: $scope.tag, imageMeta: $scope.imageMeta, response: false});
         tagResponse.$save();
         $scope.refreshImageContext();
     };
     $scope.sendPositive = function() {
-        console.log("Pos");
         var tagResponse = new TagResponse({tag: $scope.tag, imageMeta: $scope.imageMeta, response: true});
         tagResponse.$save();
         $scope.refreshImageContext();
@@ -85,4 +83,22 @@ imageController.controller('ImageController', ['$document', '$scope', '$resource
 
     $scope.refreshImageContext();
   }]);
+
+  imageController.controller('ImageViewController', ['$document', '$scope', '$resource', 'ImageMeta', '$routeParams',
+    function ($document, $scope, $http, ImageMeta, $routeParams) {
+
+      $scope.init = function() {
+          $scope.imageMeta = ImageMeta.get({_id: $routeParams.imageId});
+      };
+
+      $scope.goModal = function() {
+          console.log("Going modal");
+          $("#modal").modal({
+              showClose: false
+          });
+          $.modal.resize()
+      };
+
+      $scope.init();
+    }]);
   });

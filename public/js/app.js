@@ -11,6 +11,7 @@ require(["angular", './controllers', './directives', './filters', './services', 
 
 angular.module('myApp', ['myApp.filters', 'imageController', 'imageService', 'myApp.directives', 'ngResource', 'ngRoute']).
   config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/images/:imageId', {templateUrl: 'assets/partials/viewImage.html', controller: 'ImageViewController'});
     $routeProvider.when('/images', {templateUrl: 'assets/partials/images.html', controller: 'ImageController'});
     $routeProvider.otherwise({redirectTo: '/images'});
 }]);
