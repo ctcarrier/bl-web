@@ -118,8 +118,13 @@ body, html {
     margin-right:-4px;
 }
 
-.modal {
+#modal {
     max-height: 50%;
+    overflow: auto;
+}
+
+#modalLink {
+    max-height: 4em;
     overflow: auto;
 }
 

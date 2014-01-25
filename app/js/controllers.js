@@ -30,7 +30,7 @@ define(['angular'], function (angular) {
 
             $scope.imageQ = [];
             $scope.tagQ = [];
-            $scope.externalLink = $location.protocol() + '://' + $location.host() + '/#/images/'
+            $scope.externalHost = $location.protocol() + '://' + $location.host() + '/#/images/'
             $scope.init = function () {
                 $scope.fillQs();
             };
@@ -97,6 +97,9 @@ define(['angular'], function (angular) {
                     showClose: false
                 });
                 $.modal.resize()
+            };
+            $scope.getExternalLink = function () {
+                return $scope.externalHost + $scope.imageQ[0].flickr.flickr_id;
             };
 
             $scope.init();
