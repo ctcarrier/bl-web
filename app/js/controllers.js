@@ -22,83 +22,93 @@
 //});
 
 console.log("Creating controllers");
-define(['angular'], function(angular){
-var imageController = angular.module('imageController', []);
+define(['angular'], function (angular) {
+    var imageController = angular.module('imageController', []);
 
-imageController.controller('ImageController', ['$document', '$scope', '$resource', 'ImageMeta', 'Tag', 'TagResponse',
-  function ($document, $scope, $http, ImageMeta, Tag, TagResponse) {
+    imageController.controller('ImageController', ['$document', '$scope', '$resource', 'ImageMeta', 'Tag', 'TagResponse',
+        function ($document, $scope, $http, ImageMeta, Tag, TagResponse) {
 
-    $scope.init = function() {
-        $scope.imageMeta = ImageMeta.get({_id: 'random'});
-        $scope.tag = Tag.get({_id: 'random'});
+            $scope.imageQ = [];
+            $scope.tagQ = [];
+            $scope.init = function () {
+                $scope.fillQs();
+            };
 
-         $scope.nextImageMeta = ImageMeta.get({_id: 'random'}, function(){
-             $.preload([$scope.nextImageMeta.flickr.flickr_original_source]);
-         });
-         $scope.nextTag = Tag.get({_id: 'random'});
-    };
+            $scope.refreshImageContext = function () {
+                $scope.imageQ.shift();
+                $scope.tagQ.shift();
 
-    $scope.refreshImageContext = function(){
-        //$scope.imageMeta = $scope.nextImageMeta;
-        //$scope.tag = $scope.nextTag;
+                if ($scope.imageQ.length < 2){
+                    $scope.fillQs();
+                }
+            };
 
-        $scope.imageMeta = ImageMeta.get({_id: 'random'});
-         $scope.tag = Tag.get({_id: 'random'});
-    };
+            $scope.fillQs = function () {
+                for (var i = 0; i < 3; i++) {
+                    ImageMeta.get({_id: 'random', dt: new Date().getTime()}).$promise.then(function (randomImage) {
+                        $scope.imageQ.push(randomImage);
+                        new Image().src = randomImage.flickr.flickr_original_source;
+                        console.log("Got next: " + randomImage.flickr.flickr_original_source);
+                    });
+                    Tag.get({_id: 'random', dt: new Date().getTime()}).$promise.then(function(randomTag){
+                        $scope.tagQ.push(randomTag);
+                    });
+                }
+            };
 
-    $document.keypress(function(keyEvent) {
-        if (keyEvent.which === 121){
-            $scope.sendPositive();
-        }
-        else if (keyEvent.which === 110){
-            $scope.sendNegative();
-        }
-       });
+            $document.keypress(function (keyEvent) {
+                if (keyEvent.which === 121) {
+                    $scope.sendPositive();
+                }
+                else if (keyEvent.which === 110) {
+                    $scope.sendNegative();
+                }
+            });
 
-    $scope.sendNegative = function() {
-        var tagResponse = new TagResponse({tag: $scope.tag, imageMeta: $scope.imageMeta, response: false});
-        tagResponse.$save();
-        $scope.refreshImageContext();
-    };
-    $scope.sendPositive = function() {
-        var tagResponse = new TagResponse({tag: $scope.tag, imageMeta: $scope.imageMeta, response: true});
-        tagResponse.$save();
-        $scope.refreshImageContext();
-    };
+            $scope.sendNegative = function () {
+                var tagResponse = new TagResponse({tag: $scope.tagQ[0], imageMeta: $scope.imageQ[0], response: false});
+                tagResponse.$save();
+                $scope.refreshImageContext();
+            };
+            $scope.sendPositive = function () {
+                var tagResponse = new TagResponse({tag: $scope.tagQ[0], imageMeta: $scope.imageQ[0], response: true});
+                tagResponse.$save();
+                $scope.refreshImageContext();
+            };
 
-    $scope.rotateLeft = function() {
-        $("#mainImage").addClass("rotate270");
-    };
-    $scope.rotateRight = function() {
-        $("#mainImage").addClass("rotate90");
-    };
+            $scope.rotateLeft = function () {
+                $("#mainImage").addClass("rotate270");
+            };
+            $scope.rotateRight = function () {
+                $("#mainImage").addClass("rotate90");
+            };
 
-    $scope.goModal = function() {
-        console.log("Going modal");
-        $("#modal").modal({
-            showClose: false
-        });
-        $.modal.resize()
-    };
+            $scope.goModal = function () {
+                console.log("Going modal");
+                $("#modal").modal({
+                    showClose: false
+                });
+                $.modal.resize()
+            };
 
-    $scope.refreshImageContext();
-  }]);
+            $scope.init();
+        }]);
 
-  imageController.controller('ImageViewController', ['$document', '$scope', '$resource', 'ImageMeta', '$routeParams',
-    function ($document, $scope, $http, ImageMeta, $routeParams) {
+    imageController.controller('ImageViewController', ['$document', '$scope', '$resource', 'ImageMeta', '$routeParams',
+        function ($document, $scope, $http, ImageMeta, $routeParams) {
 
-      $scope.init = function() {
-          $scope.imageMeta = ImageMeta.get({_id: $routeParams.imageId});
-      };
+            $scope.init = function () {
+                $scope.imageMeta = ImageMeta.get({_id: $routeParams.imageId});
+            };
 
-      $scope.goModal = function() {
-          console.log("Going modal");
-          $("#modal").modal({
-              showClose: false
-          });
-          $.modal.resize()
-      };
+            $scope.goModal = function () {
+                console.log("Going modal");
+                $("#modal").modal({
+                    showClose: false
+                });
+                $.modal.resize()
+            };
 
-      $scope.init();
-    }]);
-  });
+            $scope.init();
+        }]);
+});
