@@ -25,11 +25,12 @@ console.log("Creating controllers");
 define(['angular'], function (angular) {
     var imageController = angular.module('imageController', []);
 
-    imageController.controller('ImageController', ['$document', '$scope', '$resource', 'ImageMeta', 'Tag', 'TagResponse',
-        function ($document, $scope, $http, ImageMeta, Tag, TagResponse) {
+    imageController.controller('ImageController', ['$document', '$scope', '$resource', '$location', 'ImageMeta', 'Tag', 'TagResponse',
+        function ($document, $scope, $http, $location, ImageMeta, Tag, TagResponse) {
 
             $scope.imageQ = [];
             $scope.tagQ = [];
+            $scope.externalLink = $location.protocol() + '://' + $location.host() + '/#/images/'
             $scope.init = function () {
                 $scope.fillQs();
             };
@@ -86,6 +87,13 @@ define(['angular'], function (angular) {
             $scope.goModal = function () {
                 console.log("Going modal");
                 $("#modal").modal({
+                    showClose: false
+                });
+                $.modal.resize()
+            };
+            $scope.goLinkModal = function () {
+                console.log("Going modal");
+                $("#modalLink").modal({
                     showClose: false
                 });
                 $.modal.resize()

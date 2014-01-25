@@ -2,9 +2,18 @@
     <div class="container">
         <div class="dark_background row">
             <div class="col-xs-12 text-center">
-                <button id="modalButton" type="button" class="btn flush_right transparent" ng-click="goModal()">
-                    <img src="/app/img/dialog-information-3.png" />
-                </button>
+                <div class="col-xs-2 flush_right text-right">
+                    <div class="row">
+                        <button id="modalButton" title="Image information" type="button" class="btn transparent" ng-click="goModal()">
+                            <img src="/app/img/dialog-information-3.png" />
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button id="shareLinkButton" title="Share link" type="button" class="btn transparent" ng-click="goLinkModal()">
+                            <img src="/app/img/insert-link.png" />
+                        </button>
+                    </div>
+                </div>
                 <img id="mainImage" class="img-responsive img-center" ng-src="{{imageQ[0].flickr.flickr_original_source}}" />
             </div>
         </div>
@@ -39,4 +48,7 @@
         <li>Published in: {{imageQ[0].pubplace}}</li>
         <li>Publisher: {{imageQ[0].publisher}}</li>
     </ul>
+</div>
+<div id="modalLink" class="modal">
+    <a href="{{externalLink}} + {{imageQ[0].flickr.flickr_id}}">"{{externalLink}} + {{imageQ[0].flickr.flickr_id}}"</a>
 </div>
