@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default navbar-fixed-top align-vert" role="navigation">
+    <div class="container">
+        <div class="col-xs-12 text-center">
+            <a href="/#/images">Want to see more images? Click here to tag a random image.</a>
+        </div>
+    </div>
+</nav>
+<div id="wrap" class="full_width">
+    <div class="container">
+        <div class="dark_background row">
+            <div class="col-xs-12 text-center">
+                <button id="modalButton" type="button" class="btn flush_right transparent" ng-click="goModal()">
+                    <img src="/app/img/dialog-information-3.png" />
+                </button>
+                <img id="mainImage" class="img-responsive img-center" src="{{imageMeta.flickr.flickr_original_source}}" />
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal" class="modal">
+    <ul>
+
+        <li><a href="{{imageMeta.flickr.flickr_url}}">Flickr Source</a></li>
+        <li>Title: {{imageMeta.title}}</li>
+        <li>First Author: {{imageMeta.first_author}}</li>
+        <li>Date: {{imageMeta.date}}</li>
+        <li>Published in: {{imageMeta.pubplace}}</li>
+        <li>Publisher: {{imageMeta.publisher}}</li>
+    </ul>
+</div>

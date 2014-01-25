@@ -1,10 +1,4 @@
-logs
-project/project
-project/target
-target
-tmp
 .history
-dist
 /.idea
 /*.iml
 /out
@@ -14,3 +8,10 @@ dist
 /RUNNING_PID
 /.settings
 /activator-sbt-atmos-akka-shim.sbt
+.DS_Store
+bower_components
+node_modules
+
+/.idea*
+.idea
+/.idea
