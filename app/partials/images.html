@@ -9,9 +9,11 @@
                         </button>
                     </div>
                     <div class="row">
-                        <button id="shareLinkButton" title="Share link" type="button" class="btn transparent" ng-click="goLinkModal()">
-                            <img src="/app/img/insert-link.png" />
-                        </button>
+                        <a href="{{getExternalLink()}}" target="_blank">
+                            <button id="shareLinkButton" title="Share link" type="button" class="btn transparent" ng-click="goLinkModal()">
+                                <img src="/app/img/insert-link.png" />
+                            </button>
+                        </a>
                     </div>
                 </div>
                 <img id="mainImage" class="img-responsive img-center" ng-src="{{imageQ[0].flickr.flickr_original_source}}" />
@@ -50,5 +52,5 @@
     </ul>
 </div>
 <div id="modalLink" class="modal">
-    <a href="{{getExternalLink()}}">{{getExternalLink()}}</a>
+
 </div>

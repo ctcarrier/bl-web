@@ -39,6 +39,8 @@ define(['angular'], function (angular) {
                 $scope.imageQ.shift();
                 $scope.tagQ.shift();
 
+                $document.body.scrollTop = $document.documentElement.scrollTop = 0;
+
                 if ($scope.imageQ.length < 2){
                     $scope.fillQs();
                 }
