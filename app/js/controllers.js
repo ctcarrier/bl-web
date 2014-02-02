@@ -25,8 +25,8 @@ console.log("Creating controllers");
 define(['angular'], function (angular) {
     var imageController = angular.module('imageController', []);
 
-    imageController.controller('ImageController', ['$document', '$scope', '$resource', '$location', 'ImageMeta', 'Tag', 'TagResponse',
-        function ($document, $scope, $http, $location, ImageMeta, Tag, TagResponse) {
+    imageController.controller('ImageController', ['$document', '$scope', '$resource', '$location', '$anchorScroll', 'ImageMeta', 'Tag', 'TagResponse',
+        function ($document, $scope, $http, $location, $anchorScroll, ImageMeta, Tag, TagResponse) {
 
             $scope.imageQ = [];
             $scope.tagQ = [];
@@ -39,7 +39,8 @@ define(['angular'], function (angular) {
                 $scope.imageQ.shift();
                 $scope.tagQ.shift();
 
-                $document.body.scrollTop = $document.documentElement.scrollTop = 0;
+                $location.hash('wrap');
+                $anchorScroll();
 
                 if ($scope.imageQ.length < 2){
                     $scope.fillQs();
